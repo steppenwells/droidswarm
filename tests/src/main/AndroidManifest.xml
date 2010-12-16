@@ -1,0 +1,10 @@
+<manifest 
+package="com.steppenwells.droidswarm.tests" xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-sdk android:minSdkVersion="8"></uses-sdk>
+    <application>
+        <uses-library android:name="android.test.runner"></uses-library>
+    </application>
+    <instrumentation 
+    android:label="Tests" android:targetPackage="com.steppenwells.droidswarm" android:name="android.test.InstrumentationTestRunner">
+</instrumentation>
+</manifest>
