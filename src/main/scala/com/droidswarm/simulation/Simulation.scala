@@ -2,8 +2,8 @@ package com.droidswarm.simulation
 
 import com.droidswarm.app.Settings
 import android.view.SurfaceHolder
-import android.graphics.{ColorFilter, Paint, Canvas}
 import android.util.Log
+import android.graphics.{Path, ColorFilter, Paint, Canvas}
 
 class Simulation {
   var swarmers: List[Swarmer] = Nil
@@ -49,13 +49,23 @@ class Simulation {
     swarmerPaint.setAntiAlias(true)
     swarmerPaint.setARGB(255, 255, 0, 0)
 
+    val trailPaint = new Paint
+    swarmerPaint.setAntiAlias(true)
+    swarmerPaint.setARGB(255, 255, 100, 100)
+
     val bgPaint = new Paint
     bgPaint.setARGB(255,255,255,255)
     c.drawRect(0,0,Settings.worldSizeX, Settings.worldSizeY, bgPaint)
 
     swarmers foreach { s =>
 
-      c.drawCircle(s.currentPosition.x, s.currentPosition.y, 2, swarmerPaint)
+      c.drawCircle(s.currentPosition.x, s.currentPosition.y, 3, swarmerPaint)
+
+      var lineStart = s.currentPosition
+      s.previousPositions.foreach { p =>
+        c.drawLine(lineStart.x, lineStart.y, p.x, p.y, trailPaint)
+        lineStart = p
+      }
     }
     Log.d("swarmer", "drawing a swarmer at "+ swarmers.head.currentPosition)
     Log.i("sim", "done drawing" )

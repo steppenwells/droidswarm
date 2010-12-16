@@ -5,7 +5,7 @@ trait Intentions {
   def cohesion(selfPosition: Point, otherPosition: Point): Vector = {
     val separation: Vector = selfPosition -> otherPosition
     val direction: Vector = separation.normalise
-    val proximityFactor = (10 / Math.pow(separation.magnitude, 2)).toFloat
+    val proximityFactor = (25 / Math.pow(separation.magnitude, 2)).toFloat
 
     direction * proximityFactor
   }
@@ -13,7 +13,7 @@ trait Intentions {
   def avoid (selfPosition: Point, otherPosition: Point): Vector = {
     val separation: Vector = selfPosition -> otherPosition
     val direction: Vector = separation.normalise
-    val proximityFactor = (-5 / Math.pow(separation.magnitude, 4)).toFloat
+    val proximityFactor = (-2500 / Math.pow(separation.magnitude, 4)).toFloat
 
     direction * proximityFactor
   }
@@ -21,7 +21,7 @@ trait Intentions {
   def align (selfDirection: Vector, selfPosition: Point, otherDirection: Vector, otherPosition: Point): Vector = {
     val separation: Vector = selfPosition -> otherPosition
     val averageHeading = (selfDirection + otherDirection) normalise
-    val proximityFactor = (10 / Math.pow(separation.magnitude, 2)).toFloat
+    val proximityFactor = (5 / Math.pow(separation.magnitude, 2)).toFloat
 
     averageHeading * proximityFactor
   }

@@ -50,10 +50,10 @@ class Swarmer(val id: Int) extends Equals with Intentions {
 
   def updatePosition {
 
-    if (debug) {
-
-      Log.d("swarmer" + id, "old position  =" + currentPosition)
-    }
+//    if (debug) {
+//
+//      Log.d("swarmer" + id, "old position  =" + currentPosition)
+//    }
 
     rotateTowards (desires normalise)
 
@@ -64,13 +64,13 @@ class Swarmer(val id: Int) extends Equals with Intentions {
 
     currentPosition = wrapWorld(nextPosition)
 
-    if (debug) {
-
-      Log.d("swarmer" + id, "normal desire vector =" + desires.normalise)
-      Log.d("swarmer" + id, "movement vector =" + movement)
-      Log.d("swarmer" + id, "next Position vector =" + nextPosition)
-      Log.d("swarmer" + id, "now at vector =" + currentPosition)
-    }
+//    if (debug) {
+//
+//      Log.d("swarmer" + id, "normal desire vector =" + desires.normalise)
+//      Log.d("swarmer" + id, "movement vector =" + movement)
+//      Log.d("swarmer" + id, "next Position vector =" + nextPosition)
+//      Log.d("swarmer" + id, "now at vector =" + currentPosition)
+//    }
 
   }
 
@@ -91,12 +91,12 @@ class Swarmer(val id: Int) extends Equals with Intentions {
   }
 
   def rotateTowards(desiredHeading: Vector) = {
-
-    if(debug) {
-      Log.d("swarmer" + id, "old heading =" + currentHeading)
-      Log.d("swarmer" + id, "rotating towards heading =" + desiredHeading)
-      Log.d("swarmer" + id, "maxRotation =" + maxRotation)
-    }
+//
+//    if(debug) {
+//      Log.d("swarmer" + id, "old heading =" + currentHeading)
+//      Log.d("swarmer" + id, "rotating towards heading =" + desiredHeading)
+//      Log.d("swarmer" + id, "maxRotation =" + maxRotation)
+//    }
     val desiredRotation =
       (Math.atan2(desiredHeading.y, desiredHeading.x) - Math.atan2(currentHeading.y, currentHeading.x)).toFloat
 //    Log.d("swarmer", "desired heading = "+desiredHeading)
@@ -109,11 +109,11 @@ class Swarmer(val id: Int) extends Equals with Intentions {
         case _ => 
       }
     }
-    if(debug) {
-
-      Log.d("swarmer" + id, "desired rotation =" + desiredRotation)
-      Log.d("swarmer" + id, "new heading =" + currentHeading)
-    }
+//    if(debug) {
+//
+//      Log.d("swarmer" + id, "desired rotation =" + desiredRotation)
+//      Log.d("swarmer" + id, "new heading =" + currentHeading)
+//    }
   }
 
 
