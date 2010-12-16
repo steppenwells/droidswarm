@@ -7,6 +7,8 @@ object Settings {
   val minRotation = (10 / 180) * Math.Pi
   val maxRotation = (20 / 180) * Math.Pi
 
+  def velocity = 5
+
   def worldSizeX = 100
   def worldSizeY = 100
 }
