@@ -7,8 +7,13 @@ import _root_.android.widget.TextView
 class MainActivity extends Activity {
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
-    setContentView(new TextView(this) {
-      setText("Arsenal are shit!")
-    })
+
+    setContentView(R.layout.droidswarm_layout)
+
+    val swarmView = findViewById(R.id.swarm)
+    
+//    setContentView(new TextView(this) {
+//      setText("Arsenal are shit!")
+//    })
   }
 }
