@@ -6,8 +6,8 @@ import util.Random
 object Random {
   val r = new Random
 
-  def nextDoubleInRange(min: Double, max: Double) = {
+  def nextFloatInRange(min: Float, max: Float) = {
     val range = max - min
-    (r.nextDouble * range) + min
+    (r.nextFloat * range) + min
   }
 }

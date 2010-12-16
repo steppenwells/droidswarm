@@ -2,12 +2,12 @@ package com.droidswarm.app
 
 object Settings {
 
-  var numberOfSwarmers = 50
+  var numberOfSwarmers = 5
 
   def trailLength = 25
 
-  val minRotation = (10 / 180) * Math.Pi
-  val maxRotation = (20 / 180) * Math.Pi
+  val minRotation: Float = 0.175f
+  val maxRotation: Float = 0.350f
 
   def velocity = 5
 

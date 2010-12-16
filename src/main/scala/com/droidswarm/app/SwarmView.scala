@@ -1,16 +1,16 @@
 package com.droidswarm.app
 
 import android.content.Context
-import android.util.AttributeSet
 import android.view.{SurfaceHolder, SurfaceView}
 import com.droidswarm.simulation.{Simulation, SimulationThread}
+import android.util.{Log, AttributeSet}
 
 class SwarmView(val context: Context, val attrs: AttributeSet)
         extends SurfaceView(context, attrs)
         with SurfaceHolder.Callback {
 
   val simulation = new Simulation
-  val simulationThread = new SimulationThread(simulation)
+  val simulationThread = new SimulationThread(simulation, getHolder)
 
 
   getHolder addCallback this
@@ -18,7 +18,6 @@ class SwarmView(val context: Context, val attrs: AttributeSet)
   override def surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
     Settings.worldSizeX = width
     Settings.worldSizeY = height
-
   }
 
   override def surfaceCreated(holder: SurfaceHolder) {
