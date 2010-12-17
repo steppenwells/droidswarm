@@ -20,7 +20,7 @@ class Simulation extends OnTouchListener {
 
       swarmers = s :: swarmers
     }
-    swarmers.take(1)map(_.debug = true)
+    swarmers.take(2)map(_.debug = true)
 //    Log.i("sim", "init "+swarmers.size+" swarmers" )
   }
 

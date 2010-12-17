@@ -30,8 +30,8 @@ class Swarmer(val id: Int) extends Equals with Intentions {
 
       val cohesionVector = cohesion(currentPosition, s.currentPosition)
       val avoidVector = avoid(currentPosition, s.currentPosition)
-//      val alignVector = align(currentHeading, currentPosition, s.currentHeading, s.currentPosition)
-      val alignVector = new Vector(0,0)
+      val alignVector = align(currentHeading, currentPosition, s.currentHeading, s.currentPosition)
+//      val alignVector = new Vector(0,0)
 
       desires = cohesionVector + avoidVector + alignVector + desires
       s.desires = cohesionVector.inverse + avoidVector.inverse + alignVector + s.desires
@@ -39,13 +39,13 @@ class Swarmer(val id: Int) extends Equals with Intentions {
       swarmersProcessed = s :: swarmersProcessed
       s.swarmersProcessed = this :: s.swarmersProcessed
 
-//      if (debug && s.debug) {
-//
-//        Log.d("swarmer "+id, "cohesion vector =" + cohesionVector.magnitude)
-//        Log.d("swarmer "+id, "avoid vector =" + avoidVector.magnitude)
-//        Log.d("swarmer "+id, "align vector =" + alignVector.magnitude)
-//        Log.d("swarmer "+id, "desire vector =" + desires.magnitude)
-//      }
+      if (debug && s.debug) {
+
+        Log.d("swarmer "+id, "cohesion vector =" + cohesionVector.magnitude)
+        Log.d("swarmer "+id, "avoid vector =" + avoidVector.magnitude)
+        Log.d("swarmer "+id, "align vector =" + alignVector.magnitude)
+        Log.d("swarmer "+id, "desire vector =" + desires.magnitude)
+      }
     }
   }
 
