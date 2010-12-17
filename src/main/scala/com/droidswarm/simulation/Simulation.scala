@@ -63,7 +63,10 @@ class Simulation {
 
       var lineStart = s.currentPosition
       s.previousPositions.foreach { p =>
-        c.drawLine(lineStart.x, lineStart.y, p.x, p.y, trailPaint)
+        val lineVector = new Vector( p.x - lineStart.x, p.y - lineStart.y )
+        if (lineVector.magnitude < 10) {
+          c.drawLine(lineStart.x, lineStart.y, p.x, p.y, trailPaint)
+        }
         lineStart = p
       }
     }
