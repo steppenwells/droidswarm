@@ -50,8 +50,8 @@ class Simulation {
     swarmerPaint.setARGB(255, 255, 0, 0)
 
     val trailPaint = new Paint
-    swarmerPaint.setAntiAlias(true)
-    swarmerPaint.setARGB(255, 255, 100, 100)
+    trailPaint.setAntiAlias(true)
+    trailPaint.setARGB(255, 255, 0, 0)
 
     val bgPaint = new Paint
     bgPaint.setARGB(255,255,255,255)

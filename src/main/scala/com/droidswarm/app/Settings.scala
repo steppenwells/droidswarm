@@ -2,7 +2,7 @@ package com.droidswarm.app
 
 object Settings {
 
-  var numberOfSwarmers = 15
+  var numberOfSwarmers = 30
 
   def trailLength = 25
 
