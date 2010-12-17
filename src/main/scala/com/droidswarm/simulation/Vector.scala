@@ -31,4 +31,8 @@ class Vector(x: Float, y: Float) extends Point(x,y) {
                (x * Math.sin(angle) + y * Math.cos(angle)).toFloat)
   }
 
+  def angleWith(other: Vector): Float = {
+    (Math.acos(((x * other.x) + (y * other.y)) / (magnitude * other.magnitude))).toFloat
+  }
+
 }

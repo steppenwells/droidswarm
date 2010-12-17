@@ -20,7 +20,7 @@ class Simulation extends OnTouchListener {
 
       swarmers = s :: swarmers
     }
-    swarmers.take(2)map(_.debug = true)
+    swarmers.take(1)map(_.debug = true)
 //    Log.i("sim", "init "+swarmers.size+" swarmers" )
   }
 
@@ -85,6 +85,7 @@ class Simulation extends OnTouchListener {
 
       var lineStart = s.currentPosition
       val trailAlphaStep = (255 / Settings.trailLength).toInt
+
       for (i <- 0 until (s.previousPositions.size)) {
         trailPaint.setARGB(255 - (i * trailAlphaStep), 255, 0, 0)
         val p = s.previousPositions(i)
@@ -102,6 +103,11 @@ class Simulation extends OnTouchListener {
 //        }
 //        lineStart = p
 //      }
+      if(s.debug) {
+        c.drawLine(s.currentPosition.x, s.currentPosition.y,
+          s.currentPosition.x + (s.desires.normalise * 50).x,
+          s.currentPosition.y + (s.desires.normalise * 50).y, touchPaint)
+      }
     }
 
 
@@ -110,7 +116,6 @@ class Simulation extends OnTouchListener {
   }
 
   override def onTouch(view: View, event: MotionEvent): Boolean = {
-    Log.i("TOUCH", event.toString)
     touchLock.synchronized {
       touchPoints = Nil
       if (event.getAction != MotionEvent.ACTION_UP)

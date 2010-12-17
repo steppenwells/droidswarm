@@ -99,29 +99,30 @@ class Swarmer(val id: Int) extends Equals with Intentions {
   }
 
   def rotateTowards(desiredHeading: Vector) = {
-//
-//    if(debug) {
-//      Log.d("swarmer" + id, "old heading =" + currentHeading)
-//      Log.d("swarmer" + id, "rotating towards heading =" + desiredHeading)
-//      Log.d("swarmer" + id, "maxRotation =" + maxRotation)
-//    }
-    val desiredRotation =
-      (Math.atan2(desiredHeading.y, desiredHeading.x) - Math.atan2(currentHeading.y, currentHeading.x)).toFloat
-//    Log.d("swarmer", "desired heading = "+desiredHeading)
-//    Log.d("swarmer", "desired rotation = "+desiredRotation)
+
+//    val desiredRotation =
+//      (Math.atan2(desiredHeading.y, desiredHeading.x) - Math.atan2(currentHeading.y, currentHeading.x)).toFloat
+
+
+    val desiredRotation = currentHeading.angleWith(desiredHeading)
+
     Math.abs(desiredRotation) match {
       case d: Float if d < maxRotation => currentHeading = desiredHeading
-      case _ => desiredRotation match {
-        case d: Float if d > 0 => currentHeading = currentHeading.rotate(maxRotation)
-        case d: Float if d < 0 => currentHeading = currentHeading.rotate(-maxRotation)
-        case _ => 
+      case _ => {
+        val positiveRotateVector = currentHeading.rotate(maxRotation)
+        val negativeRotateVector = currentHeading.rotate(-maxRotation)
+
+        val positiveAngle = desiredHeading.angleWith(positiveRotateVector)
+        val negativeAngle = desiredHeading.angleWith(negativeRotateVector)
+
+        if (positiveAngle < negativeAngle) {
+          currentHeading = positiveRotateVector
+        } else {
+          currentHeading = negativeRotateVector
+        }
       }
     }
-//    if(debug) {
-//
-//      Log.d("swarmer" + id, "desired rotation =" + desiredRotation)
-//      Log.d("swarmer" + id, "new heading =" + currentHeading)
-//    }
+
   }
 
 
