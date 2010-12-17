@@ -7,13 +7,14 @@ import android.util.{Log, AttributeSet}
 
 class SwarmView(val context: Context, val attrs: AttributeSet)
         extends SurfaceView(context, attrs)
-        with SurfaceHolder.Callback {
+        with SurfaceHolder.Callback{
 
   val simulation = new Simulation
   val simulationThread = new SimulationThread(simulation, getHolder)
 
 
   getHolder addCallback this
+  setOnTouchListener(simulation)
 
   override def surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
     Settings.worldSizeX = width
@@ -41,5 +42,4 @@ class SwarmView(val context: Context, val attrs: AttributeSet)
       }
     }
   }
-
 }
