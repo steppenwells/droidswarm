@@ -62,13 +62,25 @@ class Simulation {
       c.drawCircle(s.currentPosition.x, s.currentPosition.y, 3, swarmerPaint)
 
       var lineStart = s.currentPosition
-      s.previousPositions.foreach { p =>
+      val trailAlphaStep = (255 / Settings.trailLength).toInt
+      for (i <- 0 until (s.previousPositions.size)) {
+        trailPaint.setARGB(255 - (i * trailAlphaStep), 255, 0, 0)
+        val p = s.previousPositions(i)
+
         val lineVector = new Vector( p.x - lineStart.x, p.y - lineStart.y )
         if (lineVector.magnitude < 10) {
           c.drawLine(lineStart.x, lineStart.y, p.x, p.y, trailPaint)
         }
         lineStart = p
       }
+
+//      s.previousPositions.foreach { p =>
+//        val lineVector = new Vector( p.x - lineStart.x, p.y - lineStart.y )
+//        if (lineVector.magnitude < 10) {
+//          c.drawLine(lineStart.x, lineStart.y, p.x, p.y, trailPaint)
+//        }
+//        lineStart = p
+//      }
     }
     Log.d("swarmer", "drawing a swarmer at "+ swarmers.head.currentPosition)
     Log.i("sim", "done drawing" )
