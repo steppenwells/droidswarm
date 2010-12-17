@@ -113,8 +113,11 @@ class Simulation extends OnTouchListener {
     Log.i("TOUCH", event.toString)
     touchLock.synchronized {
       touchPoints = Nil
-      for (i <- 0 until event.getPointerCount)
-        touchPoints = new Point(event.getX(i), event.getY(i)) :: touchPoints
+      if (event.getAction != MotionEvent.ACTION_UP)
+        for (i <- 0 until event.getPointerCount)
+          if (i != event.getActionIndex
+                  || event.getAction != MotionEvent.ACTION_POINTER_UP)
+            touchPoints = new Point(event.getX(i), event.getY(i)) :: touchPoints
     }
     true
   }

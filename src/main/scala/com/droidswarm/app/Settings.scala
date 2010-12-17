@@ -4,7 +4,7 @@ object Settings {
 
   var numberOfSwarmers = 30
 
-  def trailLength = 25
+  def trailLength = 35
 
   val minRotation: Float = 0.175f
   val maxRotation: Float = 0.350f

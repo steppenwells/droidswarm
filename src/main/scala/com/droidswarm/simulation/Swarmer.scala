@@ -39,21 +39,21 @@ class Swarmer(val id: Int) extends Equals with Intentions {
       swarmersProcessed = s :: swarmersProcessed
       s.swarmersProcessed = this :: s.swarmersProcessed
 
-      if (debug && s.debug) {
-
-        Log.d("swarmer "+id, "cohesion vector =" + cohesionVector.magnitude)
-        Log.d("swarmer "+id, "avoid vector =" + avoidVector.magnitude)
-        Log.d("swarmer "+id, "align vector =" + alignVector.magnitude)
-        Log.d("swarmer "+id, "desire vector =" + desires.magnitude)
-      }
+//      if (debug && s.debug) {
+//
+//        Log.d("swarmer "+id, "cohesion vector =" + cohesionVector.magnitude)
+//        Log.d("swarmer "+id, "avoid vector =" + avoidVector.magnitude)
+//        Log.d("swarmer "+id, "align vector =" + alignVector.magnitude)
+//        Log.d("swarmer "+id, "desire vector =" + desires.magnitude)
+//      }
     }
   }
 
   def avoidTouch(touch: Point) {
     desires = avoidTouch(currentPosition, touch) + desires
-    if (debug) {
-      Log.d("swarmer "+id, "touch component =" + avoidTouch(currentPosition, touch).magnitude)
-    }
+//    if (debug) {
+//      Log.d("swarmer "+id, "touch component =" + avoidTouch(currentPosition, touch).magnitude)
+//    }
   }
 
   def updatePosition {
