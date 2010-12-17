@@ -119,7 +119,7 @@ class Swarmer(val id: Int) extends Equals with Intentions {
 
 
   def initialise {
-    velocity = Settings.velocity
+    velocity = Random.nextFloatInRange(Settings.minVelocity, Settings.maxVelocity)
 
     maxRotation = Random.nextFloatInRange(Settings.minRotation, Settings.maxRotation)
 

@@ -9,6 +9,9 @@ object Settings {
   val minRotation: Float = 0.175f
   val maxRotation: Float = 0.350f
 
+  val minVelocity: Float = 4.75f
+  val maxVelocity: Float = 5.25f
+
   def velocity = 5
 
   var worldSizeX = 100
