@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">DroidSwarm</string>
+
+    <string name="menu_reset">Reset</string>
+    <string name="menu_touch">Touch behaviour</string>
 </resources>

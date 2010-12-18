@@ -1,5 +1,7 @@
 package com.droidswarm.simulation
 
+import com.droidswarm.app.Settings
+
 trait Intentions {
 
   def cohesion(selfPosition: Point, otherPosition: Point): Vector = {
@@ -16,7 +18,7 @@ trait Intentions {
     val direction: Vector = separation.normalise
     val linearProximityFactor = (-20000 / separation.magnitude).toFloat
 
-    direction * linearProximityFactor
+    direction * linearProximityFactor * Settings.touchDirection
   }
 
   def avoid (selfPosition: Point, otherPosition: Point): Vector = {
