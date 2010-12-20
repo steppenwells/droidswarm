@@ -56,9 +56,14 @@ trait Intentions {
 
   def fleePreditor(preyPosition: Point, predPosition: Point): Vector = {
     val separation: Vector = preyPosition -> predPosition
-    val direction: Vector = separation.normalise
-    val linearProximityFactor = (-5000 / separation.magnitude).toFloat
+    if (separation.magnitude < 150) {
+      val direction: Vector = separation.normalise
+      val linearProximityFactor = (-5000 / separation.magnitude).toFloat
 
-    direction * linearProximityFactor
+      direction * linearProximityFactor
+    } else {
+      new Vector(0,0)
+    }
+
   }
 }
