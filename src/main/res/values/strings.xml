@@ -2,6 +2,6 @@
     <string name="app_name">DroidSwarm</string>
 
     <string name="menu_reset">Reset</string>
-    <string name="menu_touch">Touch behaviour</string>
-    <string name="menu_pred">Enable predators</string>
+    <string name="menu_touch">Toggle touch behaviour</string>
+    <string name="menu_pred">Toggle predators</string>
 </resources>
