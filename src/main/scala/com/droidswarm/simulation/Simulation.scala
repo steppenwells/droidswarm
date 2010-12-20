@@ -14,6 +14,7 @@ class Simulation extends OnTouchListener {
 
   def initialise {
 
+    swarmers = Nil
     for (i <- 1 to Settings.numberOfSwarmers) {
       val s = new Swarmer(i)
       s.initialise

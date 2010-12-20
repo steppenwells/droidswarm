@@ -17,5 +17,5 @@ object Settings {
   var worldSizeX = 100
   var worldSizeY = 100
 
-  var touchDirection = -1
+  var touchDirection = 1
 }
