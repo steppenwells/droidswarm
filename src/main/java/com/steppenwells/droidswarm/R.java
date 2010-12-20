@@ -13,10 +13,12 @@ public final class R {
     public static final class drawable {
         public static final int app_icon=0x7f020000;
         public static final int arrows=0x7f020001;
-        public static final int reset=0x7f020002;
-        public static final int touch=0x7f020003;
+        public static final int pred=0x7f020002;
+        public static final int reset=0x7f020003;
+        public static final int touch=0x7f020004;
     }
     public static final class id {
+        public static final int pred=0x7f060003;
         public static final int reset=0x7f060001;
         public static final int swarm=0x7f060000;
         public static final int touch=0x7f060002;
@@ -29,6 +31,7 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f040000;
+        public static final int menu_pred=0x7f040003;
         public static final int menu_reset=0x7f040001;
         public static final int menu_touch=0x7f040002;
     }

@@ -142,9 +142,6 @@ class Swarmer(val id: Int) extends Equals with Intentions {
       Random.nextFloatInRange(0, Settings.worldSizeY)
     )
 
-    if (debug) {
-      Log.d("swarmer", "init, position "+currentPosition)
-    }
   }
 
 
@@ -157,4 +154,37 @@ class Swarmer(val id: Int) extends Equals with Intentions {
   override def canEqual(other: Any) = other.isInstanceOf[Swarmer]
 
   override def hashCode = id
+}
+
+class Preditor(id: Int) extends Swarmer(id) {
+
+  override def initialise {
+    super.initialise
+    velocity = Random.nextFloatInRange(Settings.minVelocity + 2, Settings.maxVelocity + 2)
+  }
+
+  override def calculateInteractions(swarmers: List[Swarmer]) {
+    swarmers.diff(this :: swarmersProcessed) foreach { s =>
+
+      val chasePackVector = chasePack(currentPosition, s.currentPosition)
+      val chaseIndividualVector = chaseIndividual(currentPosition, s.currentPosition)
+
+      val swarmerFleeVector = fleePreditor(s.currentPosition, currentPosition)
+
+      desires = chasePackVector + chaseIndividualVector + desires
+      s.desires = swarmerFleeVector + s.desires
+
+      swarmersProcessed = s :: swarmersProcessed
+      s.swarmersProcessed = this :: s.swarmersProcessed
+
+//      if (debug && s.debug) {
+//
+//        Log.d("swarmer "+id, "cohesion vector =" + cohesionVector.magnitude)
+//        Log.d("swarmer "+id, "avoid vector =" + avoidVector.magnitude)
+//        Log.d("swarmer "+id, "align vector =" + alignVector.magnitude)
+//        Log.d("swarmer "+id, "desire vector =" + desires.magnitude)
+//      }
+    }
+  }
+
 }

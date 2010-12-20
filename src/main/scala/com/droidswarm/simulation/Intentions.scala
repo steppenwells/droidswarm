@@ -36,4 +36,29 @@ trait Intentions {
 
     averageHeading * proximityFactor
   }
+
+  def chasePack(predPosition: Point, preyPosition: Point): Vector = {
+    val separation: Vector = predPosition -> preyPosition
+    val direction: Vector = separation.normalise
+    val linearProximityFactor = (100 / separation.magnitude).toFloat
+    val root2ProximityFactor = (20000 / Math.pow(separation.magnitude, 2)).toFloat
+
+    (direction * root2ProximityFactor) + (direction * linearProximityFactor)
+  }
+
+  def chaseIndividual(predPosition: Point, preyPosition: Point): Vector = {
+    val separation: Vector = predPosition -> preyPosition
+    val direction: Vector = separation.normalise
+    val proximityFactor = (1000000 / Math.pow(separation.magnitude, 4)).toFloat
+
+    direction * 10 * proximityFactor
+  }
+
+  def fleePreditor(preyPosition: Point, predPosition: Point): Vector = {
+    val separation: Vector = preyPosition -> predPosition
+    val direction: Vector = separation.normalise
+    val linearProximityFactor = (-5000 / separation.magnitude).toFloat
+
+    direction * linearProximityFactor
+  }
 }

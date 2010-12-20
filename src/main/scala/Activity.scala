@@ -21,14 +21,25 @@ class MainActivity extends Activity {
   }
 
   override def onOptionsItemSelected(item: MenuItem): Boolean = {
+
+    val swarmView = findViewById(R.id.swarm).asInstanceOf[SwarmView]
+
     item.getItemId match {
       case R.id.reset => {
-        val swarmView = findViewById(R.id.swarm).asInstanceOf[SwarmView]
+
         swarmView.simulation.initialise
         true
       }
       case R.id.touch => {
         Settings.touchDirection = Settings.touchDirection * -1
+        true
+      }
+      case R.id.pred => {
+        if (swarmView.simulation.preditors.isEmpty) {
+          swarmView.simulation.initPreditors
+        } else {
+          swarmView.simulation.removePreditors
+        }
         true
       }
       case _ => super.onOptionsItemSelected(item)

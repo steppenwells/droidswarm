@@ -6,4 +6,7 @@
     <item android:id="@+id/touch"
           android:icon="@drawable/touch"
           android:title="@string/menu_touch" />
+    <item android:id="@+id/pred"
+          android:icon="@drawable/pred"
+          android:title="@string/menu_pred" />
 </menu>
