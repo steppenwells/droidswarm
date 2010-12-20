@@ -56,6 +56,11 @@ trait Intentions {
 
   def fleePreditor(preyPosition: Point, predPosition: Point): Vector = {
     val separation: Vector = preyPosition -> predPosition
+
+    if(separation.magnitude < 1.5) {
+      throw new PreyEatenException()
+    }
+
     if (separation.magnitude < 150) {
       val direction: Vector = separation.normalise
       val linearProximityFactor = (-5000 / separation.magnitude).toFloat
@@ -67,3 +72,5 @@ trait Intentions {
 
   }
 }
+
+class PreyEatenException extends Exception

@@ -161,6 +161,8 @@ class Preditor(id: Int) extends Swarmer(id) {
   override def initialise {
     super.initialise
     velocity = Random.nextFloatInRange(Settings.minVelocity + 2, Settings.maxVelocity + 2)
+
+    maxRotation = Settings.minRotation
   }
 
   override def calculateInteractions(swarmers: List[Swarmer]) {
@@ -169,21 +171,21 @@ class Preditor(id: Int) extends Swarmer(id) {
       val chasePackVector = chasePack(currentPosition, s.currentPosition)
       val chaseIndividualVector = chaseIndividual(currentPosition, s.currentPosition)
 
-      val swarmerFleeVector = fleePreditor(s.currentPosition, currentPosition)
-
       desires = chasePackVector + chaseIndividualVector + desires
-      s.desires = swarmerFleeVector + s.desires
-
       swarmersProcessed = s :: swarmersProcessed
-      s.swarmersProcessed = this :: s.swarmersProcessed
 
-//      if (debug && s.debug) {
-//
-//        Log.d("swarmer "+id, "cohesion vector =" + cohesionVector.magnitude)
-//        Log.d("swarmer "+id, "avoid vector =" + avoidVector.magnitude)
-//        Log.d("swarmer "+id, "align vector =" + alignVector.magnitude)
-//        Log.d("swarmer "+id, "desire vector =" + desires.magnitude)
-//      }
+      try {
+        val swarmerFleeVector = fleePreditor(s.currentPosition, currentPosition)
+        s.desires = swarmerFleeVector + s.desires
+
+      } catch {
+        case pee: PreyEatenException => {
+          s.initialise
+          s.clearDesires
+        }
+      }
+
+      s.swarmersProcessed = this :: s.swarmersProcessed
     }
   }
 

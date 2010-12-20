@@ -123,11 +123,11 @@ class Simulation extends OnTouchListener {
         lineStart = p
       }
 
-      if(s.debug) {
-        c.drawLine(s.currentPosition.x, s.currentPosition.y,
-          s.currentPosition.x + (s.desires.normalise * 50).x,
-          s.currentPosition.y + (s.desires.normalise * 50).y, touchPaint)
-      }
+//      if(s.debug) {
+//        c.drawLine(s.currentPosition.x, s.currentPosition.y,
+//          s.currentPosition.x + (s.desires.normalise * 50).x,
+//          s.currentPosition.y + (s.desires.normalise * 50).y, touchPaint)
+//      }
     }
   }
 
